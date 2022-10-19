@@ -25,7 +25,7 @@ else
     URLS="$URLS https://www.blocklist.de/downloads/export-ips_all.txt"
 
     # badips.com, from score 2 up
-    URLS="$URLS http://www.badips.com/get/list/ssh/2"
+    # URLS="$URLS http://www.badips.com/get/list/ssh/2"
 
     # iblocklist.com is also supported
     # URLS="$URLS http://list.iblocklist.com/?list=srzondksmjuwsvmgdbhi&fileformat=p2p&archiveformat=gz&username=USERNAMEx$&pin=PIN"
@@ -68,7 +68,7 @@ fi
 # check if we are on OpenWRT
 if [ "$(which uci 2>/dev/null)" ]; then
     # we're on OpenWRT
-    wan_iface=pppoe-wan
+    wan_iface=$(uci get network.wan.device)
     IN_OPT="-i $wan_iface"
     INPUT=input_rule
     FORWARD=forwarding_rule
